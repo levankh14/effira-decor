@@ -1,5 +1,6 @@
 /* ─────────────────────────────────────────────────────────────
-   Effira Decor — Dark Georgian Atelier (route: /atelier)
+   Effira Decor — Dark Georgian Atelier
+   Mobile-first; progressive enhancements for larger viewports.
    ───────────────────────────────────────────────────────────── */
 
 .stage {
@@ -12,6 +13,11 @@
   --stone: #9e8e7e;
   --glow: rgba(201, 169, 110, 0.15);
 
+  /* Mobile-tuned blurs and orb sizes — scaled up on larger screens */
+  --orb-size: 360px;
+  --orb-blur: 90px;
+  --conic-blur: 28px;
+
   position: relative;
   min-height: 100dvh;
   min-height: 100vh;
@@ -19,7 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10vh 2rem;
+  padding:
+    clamp(3rem, 8vh, 7rem)
+    clamp(1.125rem, 5vw, 2rem)
+    calc(clamp(3rem, 8vh, 7rem) + env(safe-area-inset-bottom, 0px));
   background: var(--ink);
   color: var(--ivory);
   isolation: isolate;
@@ -33,10 +42,10 @@
   inset: -10%;
   z-index: -4;
   background: radial-gradient(
-    ellipse at 50% 45%,
+    ellipse at 50% 42%,
     #1a0c10 0%,
-    #140910 35%,
-    #0d0608 75%
+    #140910 38%,
+    #0d0608 78%
   );
 }
 
@@ -54,9 +63,9 @@
     rgba(139, 58, 82, 0.03) 300deg,
     rgba(201, 169, 110, 0.05) 360deg
   );
-  filter: blur(40px);
+  filter: blur(var(--conic-blur));
   opacity: 0.9;
-  animation: conicSpin 32s linear infinite;
+  animation: conicSpin 42s linear infinite;
 }
 
 @keyframes conicSpin {
@@ -86,37 +95,37 @@
 /* ── Breathing blurred orbs ── */
 .orb {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: var(--orb-size);
+  height: var(--orb-size);
   border-radius: 50%;
-  filter: blur(180px);
+  filter: blur(var(--orb-blur));
   z-index: -2;
-  opacity: 0.12;
+  opacity: 0.14;
   will-change: transform, opacity;
-  animation: breathe 8s ease-in-out infinite;
+  animation: breathe 9s ease-in-out infinite;
 }
 
 .orbRose {
-  top: -180px;
-  left: -200px;
+  top: calc(var(--orb-size) * -0.45);
+  left: calc(var(--orb-size) * -0.4);
   background: #8b3a52;
 }
 
 .orbGold {
-  bottom: -220px;
-  right: -180px;
+  bottom: calc(var(--orb-size) * -0.5);
+  right: calc(var(--orb-size) * -0.35);
   background: #c9a96e;
-  animation-delay: -3s;
+  animation-delay: -3.5s;
 }
 
 @keyframes breathe {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.1;
+    opacity: 0.12;
   }
   50% {
     transform: scale(1.08);
-    opacity: 0.14;
+    opacity: 0.17;
   }
 }
 
@@ -136,26 +145,24 @@
 .logoWrap {
   display: flex;
   justify-content: center;
-  margin-bottom: clamp(1.25rem, 3vh, 2rem);
+  margin-bottom: clamp(1rem, 2.5vh, 1.75rem);
 }
 
 .logo {
-  width: 200px;
-  height: 200px;
-  max-width: 50vw;
-  max-height: 50vw;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   filter:
-    drop-shadow(0 0 24px rgba(201, 169, 110, 0.25))
-    drop-shadow(0 8px 22px rgba(0, 0, 0, 0.55));
+    drop-shadow(0 0 18px rgba(201, 169, 110, 0.28))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.55));
 }
 
 /* Thin gold line below logo */
 .hairline {
   display: block;
-  width: 56px;
+  width: 48px;
   height: 1px;
-  margin: 0 auto clamp(1.5rem, 4vh, 2.5rem);
+  margin: 0 auto clamp(1.25rem, 3vh, 2rem);
   background: linear-gradient(
     to right,
     transparent,
@@ -169,11 +176,13 @@
   font-family: var(--font-noto-georgian), "Noto Serif Georgian", Georgia, serif;
   font-weight: 400;
   color: var(--ivory);
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  margin: 0 0 clamp(1.25rem, 3vh, 2rem);
+  /* Mobile-first: start at 2.1rem, scale up fast on larger viewports */
+  font-size: clamp(2.1rem, 8.5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  margin: 0 0 clamp(1rem, 2.5vh, 1.75rem);
   text-shadow: 0 2px 30px rgba(201, 169, 110, 0.12);
+  text-wrap: balance;
 }
 
 /* ── Ornament between headline and credit ── */
@@ -181,11 +190,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   color: var(--gold);
   width: 100%;
-  max-width: 320px;
-  margin: 0 auto clamp(1rem, 2.5vh, 1.5rem);
+  max-width: 260px;
+  margin: 0 auto clamp(0.875rem, 2vh, 1.25rem);
 }
 
 .ornamentLine {
@@ -200,22 +209,37 @@
 }
 
 .ornamentMark {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
   filter: drop-shadow(0 0 6px rgba(201, 169, 110, 0.6));
 }
 
 /* ── Designer credit ── */
 .credit {
+  font-family: var(--font-noto-georgian), "Noto Serif Georgian", Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--gold);
+  font-size: clamp(0.82rem, 3.1vw, 1rem);
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  margin: 0 auto clamp(2rem, 5vh, 3.5rem);
+  max-width: 32ch;
+  opacity: 0.95;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.creditDash {
+  color: rgba(201, 169, 110, 0.65);
   font-family: var(--font-cormorant-display), "Cormorant", serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--gold);
-  font-size: 1.1rem;
-  letter-spacing: 0.01em;
-  margin: 0 0 clamp(2.5rem, 6vh, 4rem);
-  opacity: 0.95;
+  flex-shrink: 0;
 }
 
 /* ── Gratitude block with hairlines above/below ── */
@@ -224,8 +248,8 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: clamp(1.25rem, 3vh, 1.75rem);
-  margin: 0 0 clamp(1.5rem, 4vh, 2.25rem);
+  gap: clamp(0.875rem, 2vh, 1.5rem);
+  margin: 0 0 clamp(1.25rem, 3.5vh, 2rem);
 }
 
 .rule {
@@ -237,13 +261,14 @@
 
 .gratitude {
   font-family: var(--font-noto-georgian), "Noto Serif Georgian", Georgia, serif;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ivory);
-  opacity: 0.9;
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  line-height: 2;
+  opacity: 0.92;
+  font-size: clamp(0.95rem, 3.6vw, 1.3rem);
+  line-height: 1.85;
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0 0.25rem;
+  text-wrap: balance;
 }
 
 /* ── Sub-text ── */
@@ -251,11 +276,12 @@
   font-family: var(--font-noto-georgian), "Noto Serif Georgian", Georgia, serif;
   font-weight: 300;
   color: var(--stone);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  line-height: 1.75;
-  max-width: 560px;
-  margin: 0 auto clamp(3rem, 8vh, 5rem);
+  font-size: clamp(0.82rem, 3vw, 0.95rem);
+  letter-spacing: 0.03em;
+  line-height: 1.72;
+  max-width: 44ch;
+  margin: 0 auto clamp(2.5rem, 6vh, 4.5rem);
+  text-wrap: balance;
 }
 
 /* ── Instagram ── */
@@ -263,15 +289,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .igLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   color: var(--gold);
   background: transparent;
@@ -279,13 +305,16 @@
   transition:
     color 0.3s ease,
     border-color 0.3s ease,
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .igIcon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
 .igLink:hover,
@@ -295,6 +324,11 @@
   transform: translateY(-1px);
   outline: none;
   animation: goldPulse 1.8s ease-in-out infinite;
+}
+
+.igLink:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 22px 2px rgba(201, 169, 110, 0.45);
 }
 
 @keyframes goldPulse {
@@ -314,7 +348,7 @@
   font-family: var(--font-cormorant-display), "Cormorant", serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 0.95rem;
+  font-size: clamp(0.88rem, 2.6vw, 1rem);
   color: var(--stone);
   letter-spacing: 0.08em;
 }
@@ -324,7 +358,7 @@
    ═════════════════════════════════════════════ */
 
 @keyframes sealIn {
-  from { opacity: 0; transform: rotate(-4deg) scale(0.96); }
+  from { opacity: 0; transform: rotate(-4deg) scale(0.94); }
   to   { opacity: 1; transform: rotate(0deg)  scale(1); }
 }
 
@@ -384,6 +418,58 @@
   animation: fadeIn 1s ease-out 2.4s forwards;
 }
 
+/* ═════════════════════════════════════════════
+   Responsive tuning
+   ═════════════════════════════════════════════ */
+
+/* Small tablets and up → larger logo, softer padding */
+@media (min-width: 520px) {
+  .logo {
+    width: 180px;
+    height: 180px;
+  }
+  .hairline {
+    width: 56px;
+  }
+  .ornament {
+    max-width: 320px;
+    gap: 16px;
+  }
+  .ornamentMark {
+    width: 16px;
+    height: 16px;
+  }
+  .igLink {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* Tablet+ → original scale and richer atmosphere */
+@media (min-width: 768px) {
+  .stage {
+    --orb-size: 600px;
+    --orb-blur: 180px;
+    --conic-blur: 40px;
+    padding:
+      clamp(4rem, 10vh, 8rem)
+      2rem
+      clamp(4rem, 10vh, 8rem);
+  }
+  .logo {
+    width: 200px;
+    height: 200px;
+  }
+  .igLink {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ═════════════════════════════════════════════
+   Motion preferences / mobile perf guard
+   ═════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
   .conic,
   .orb {
@@ -408,19 +494,9 @@
   }
 }
 
-/* ── Small-screen refinements ── */
-@media (max-width: 520px) {
-  .stage {
-    padding: 6vh 1.25rem;
-  }
-  .logo {
-    width: 160px;
-    height: 160px;
-  }
-  .headline {
-    letter-spacing: -0.015em;
-  }
-  .gratitude {
-    line-height: 1.85;
+/* On low-end mobile: avoid the expensive conic spin entirely */
+@media (max-width: 480px) and (hover: none) {
+  .conic {
+    animation-duration: 90s;
   }
 }

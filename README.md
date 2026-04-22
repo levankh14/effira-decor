@@ -2,21 +2,18 @@
 
 A single-page Next.js 14 celebration site for **Effira Decor**, a Georgian event styling & decor brand based in Kutaisi, marking Kutaisi City Day (ქუთაისქალაქობა).
 
-Two design variants ship side-by-side:
+## Aesthetic
 
-| Route | Aesthetic | Description |
-| --- | --- | --- |
-| `/` | **Romantic Georgian Baroque** | Light, airy, dusty-rose & champagne-gold invitation card on an animated gradient mesh with drifting rose petals. |
-| `/atelier` | **Dark Georgian Atelier** | High-end candlelit baroque. Near-black base with breathing rose/gold orbs, conic shimmer, SVG grain, and a wax-seal logo reveal. |
+**Dark Georgian Atelier** — a candlelit, high-end feel inspired by old Tbilisi ateliers. A deep wine-black base with breathing rose and gold orbs, conic shimmer, fine SVG grain, and a wax-seal logo reveal. Mobile-first: the layout is designed to feel impeccable on a phone screen first, then expand gracefully on tablet and desktop.
 
 ## Tech
 
 - **Next.js 14** (App Router) + **TypeScript**
 - **Tailwind CSS** for layout utilities
-- **CSS Modules** for the dark variant
-- **Google Fonts** via `next/font/google` — *Cormorant Garamond*, *Cormorant*, *Noto Serif Georgian*
+- **CSS Modules** for the page design
+- **Google Fonts** via `next/font/google` — *Cormorant* and *Noto Serif Georgian*
 - `lucide-react` for the Instagram icon
-- **Zero animation libraries** — every motion is pure CSS keyframes
+- Pure CSS animations — zero animation libraries
 
 ## Development
 
@@ -25,10 +22,7 @@ npm install
 npm run dev
 ```
 
-Then open:
-
-- Light variant: http://localhost:3000/
-- Dark variant: http://localhost:3000/atelier
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Production build
 
@@ -37,7 +31,7 @@ npm run build
 npm run start
 ```
 
-Both routes prerender as static content.
+The page prerenders as static content.
 
 ## Credits
 

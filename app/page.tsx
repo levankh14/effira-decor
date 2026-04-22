@@ -1,89 +1,95 @@
 import Image from "next/image";
 import { Instagram } from "lucide-react";
+import styles from "./page.module.css";
 
 export default function Page() {
   return (
-    <main className="page">
-      {/* Animated atmospheric layers */}
-      <div className="mesh" aria-hidden="true" />
-      <div className="floral-pattern" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
+    <main className={styles.stage}>
+      {/* Atmosphere */}
+      <div className={styles.radial} aria-hidden="true" />
+      <div className={styles.conic} aria-hidden="true" />
+      <div className={styles.noise} aria-hidden="true" />
+      <div className={`${styles.orb} ${styles.orbRose}`} aria-hidden="true" />
+      <div className={`${styles.orb} ${styles.orbGold}`} aria-hidden="true" />
 
-      {/* Drifting rose petals */}
-      <div className="petals" aria-hidden="true">
-        <span className="petal petal-1" />
-        <span className="petal petal-2" />
-        <span className="petal petal-3" />
-        <span className="petal petal-4" />
-        <span className="petal petal-5" />
-      </div>
-
-      {/* Content card */}
-      <article className="card">
-        <div className="logo-wrap reveal-logo">
+      <section className={styles.content}>
+        <div className={`${styles.logoWrap} ${styles.revealLogo}`}>
           <Image
             src="/betterLogo.png"
             alt="Effira Decor Logo"
-            width={220}
-            height={220}
+            width={200}
+            height={200}
+            sizes="(max-width: 480px) 150px, (max-width: 768px) 180px, 200px"
             priority
-            className="logo"
+            className={styles.logo}
           />
         </div>
 
-        <Ornament />
+        <span
+          className={`${styles.hairline} ${styles.revealHairline}`}
+          aria-hidden="true"
+        />
 
-        <h1 className="headline reveal-headline">
+        <h1 className={`${styles.headline} ${styles.revealHeadline}`}>
           გილოცავთ ქუთაისქალაქობას!
         </h1>
 
-        <p className="designer reveal-designer">
-          დიზაინზე იმუშავა ადგილობრივმა დიზაინერმა —{" "}
-          <span className="designer-name">თეკლა ჭოლაძემ</span>
+        <div
+          className={`${styles.ornament} ${styles.revealOrnament}`}
+          aria-hidden="true"
+        >
+          <span className={styles.ornamentLine} />
+          <svg viewBox="0 0 32 32" className={styles.ornamentMark}>
+            <g
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.9"
+              strokeLinejoin="round"
+            >
+              <path d="M16 3 L28 16 L16 29 L4 16 Z" />
+              <path d="M16 9 L23 16 L16 23 L9 16 Z" />
+            </g>
+            <circle cx="16" cy="16" r="1.2" fill="currentColor" />
+          </svg>
+          <span className={styles.ornamentLine} />
+        </div>
+
+        <p className={`${styles.credit} ${styles.revealCredit}`}>
+          <span className={styles.creditDash} aria-hidden="true">—</span>
+          დიზაინზე იმუშავა ადგილობრივმა დიზაინერმა, თეკლა ჭოლაძემ
+          <span className={styles.creditDash} aria-hidden="true">—</span>
         </p>
 
-        <p className="gratitude reveal-gratitude">
-          გვსურს გულწრფელი მადლობა გადავუხადოთ ქუთაისის მუნიციპალიტეტის მერიის
-          კულტურის სამსახურს გაწეული შრომისა და მხარდაჭერისთვის. თქვენი
-          საქმიანობა მნიშვნელოვნად უწყობს ხელს კულტურული ცხოვრების განვითარებას
-          ჩვენს ქალაქში.
+        <div className={`${styles.gratitudeBlock} ${styles.revealGratitude}`}>
+          <span className={styles.rule} aria-hidden="true" />
+          <p className={styles.gratitude}>
+            გვსურს გულწრფელი მადლობა გადავუხადოთ
+            <br />
+            ქუთაისის მუნიციპალიტეტის მერიის კულტურის სამსახურს
+            <br />
+            გაწეული შრომისა და მხარდაჭერისთვის.
+          </p>
+          <span className={styles.rule} aria-hidden="true" />
+        </div>
+
+        <p className={`${styles.sub} ${styles.revealSub}`}>
+          თქვენი საქმიანობა მნიშვნელოვნად უწყობს ხელს კულტურული ცხოვრების
+          განვითარებას ჩვენს ქალაქში.
         </p>
 
-        <Ornament />
-
-        <div className="instagram reveal-instagram">
+        <div className={`${styles.igWrap} ${styles.revealIg}`}>
           <a
             href="https://www.instagram.com/effira_decor?igsh=YzNpbThyNmhiczU0"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow Effira Decor on Instagram"
-            className="ig-link"
+            className={styles.igLink}
           >
-            <Instagram className="ig-icon" strokeWidth={1.4} />
+            <Instagram className={styles.igIcon} strokeWidth={1.2} />
           </a>
-          <span className="ig-handle">@effira_decor</span>
+          <span className={styles.igHandle}>@effira_decor</span>
         </div>
-      </article>
+      </section>
     </main>
-  );
-}
-
-function Ornament() {
-  return (
-    <div className="ornament" aria-hidden="true">
-      <span className="ornament-line" />
-      <svg
-        viewBox="0 0 24 24"
-        className="ornament-diamond"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1"
-      >
-        <path d="M12 2 L22 12 L12 22 L2 12 Z" />
-        <path d="M12 6 L18 12 L12 18 L6 12 Z" />
-        <circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none" />
-      </svg>
-      <span className="ornament-line" />
-    </div>
   );
 }

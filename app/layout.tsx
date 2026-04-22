@@ -1,18 +1,6 @@
-import type { Metadata } from "next";
-import {
-  Cormorant,
-  Cormorant_Garamond,
-  Noto_Serif_Georgian,
-} from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Cormorant, Noto_Serif_Georgian } from "next/font/google";
 import "./globals.css";
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
 
 const cormorantDisplay = Cormorant({
   subsets: ["latin"],
@@ -32,7 +20,21 @@ const notoGeorgian = Noto_Serif_Georgian({
 export const metadata: Metadata = {
   title: "Effira Decor — გილოცავთ ქუთაისქალაქობას!",
   description:
-    "Effira Decor — elegant event styling and decor from Kutaisi, Georgia. A celebration of Kutaisi City Day.",
+    "Effira Decor — a candlelit celebration of Kutaisi City Day from a Georgian atelier.",
+  openGraph: {
+    title: "Effira Decor — გილოცავთ ქუთაისქალაქობას!",
+    description:
+      "Effira Decor — a candlelit celebration of Kutaisi City Day from a Georgian atelier.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0D0608",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -43,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="ka"
-      className={`${cormorantGaramond.variable} ${cormorantDisplay.variable} ${notoGeorgian.variable}`}
+      className={`${cormorantDisplay.variable} ${notoGeorgian.variable}`}
     >
       <body>{children}</body>
     </html>
