@@ -58,7 +58,7 @@ export default function Page() {
           <span className={styles.creditDash} aria-hidden="true">—</span>
           <span>დიზაინზე იმუშავა ადგილობრივმა დიზაინერმა,</span>
           <span className={styles.designerName}>თეკლა ჭოლაძემ</span>
-          <span className={styles.creditDash} aria-hidden="true">—</span>
+
         </p>
 
         <div className={`${styles.gratitudeBlock} ${styles.revealGratitude}`}>
