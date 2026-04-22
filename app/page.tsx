@@ -22,7 +22,7 @@ export default function Page() {
       <article className="card">
         <div className="logo-wrap reveal-logo">
           <Image
-            src="/logo.jpg"
+            src="/betterLogo.png"
             alt="Effira Decor Logo"
             width={220}
             height={220}
