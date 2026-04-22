@@ -242,6 +242,42 @@
   flex-shrink: 0;
 }
 
+.designerName {
+  position: relative;
+  color: var(--ivory);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  padding-bottom: 0.22em;
+  text-shadow: 0 0 18px rgba(201, 169, 110, 0.22);
+}
+
+.designerName::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(201, 169, 110, 0.85) 18%,
+    rgba(227, 200, 144, 1) 50%,
+    rgba(201, 169, 110, 0.85) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(201, 169, 110, 0.45);
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: underlineDraw 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 2s forwards;
+}
+
+@keyframes underlineDraw {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
 /* ── Gratitude block with hairlines above/below ── */
 .gratitudeBlock {
   width: 100%;
@@ -486,6 +522,11 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .designerName::after {
+    animation: none !important;
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
   }
   .igLink:hover,
   .igLink:focus-visible {

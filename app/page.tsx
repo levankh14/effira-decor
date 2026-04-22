@@ -56,7 +56,8 @@ export default function Page() {
 
         <p className={`${styles.credit} ${styles.revealCredit}`}>
           <span className={styles.creditDash} aria-hidden="true">—</span>
-          დიზაინზე იმუშავა ადგილობრივმა დიზაინერმა, თეკლა ჭოლაძემ
+          <span>დიზაინზე იმუშავა ადგილობრივმა დიზაინერმა,</span>
+          <span className={styles.designerName}>თეკლა ჭოლაძემ</span>
           <span className={styles.creditDash} aria-hidden="true">—</span>
         </p>
 
